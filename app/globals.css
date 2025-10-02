@@ -2,57 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* From Uiverse.io by cssbuttons-io */ 
+/* From Uiverse.io by cssbuttons-io */
 button {
- --glow-color: rgb(217, 176, 255);
- --glow-spread-color: rgba(191, 123, 255, 0.781);
- --enhanced-glow-color: rgb(231, 206, 255);
- --btn-color: rgb(100, 61, 136);
- border: .25em solid var(--glow-color);
- padding: 1em 3em;
- color: var(--glow-color);
- font-size: 15px;
- font-weight: bold;
- background-color: var(--btn-color);
- border-radius: 1em;
- outline: none;
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 1em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
- text-shadow: 0 0 .5em var(--glow-color);
- position: relative;
- transition: all 0.3s;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
 }
 
 button::after {
- pointer-events: none;
- content: "";
- position: absolute;
- top: 120%;
- left: 0;
- height: 100%;
- width: 100%;
- background-color: var(--glow-spread-color);
- filter: blur(2em);
- opacity: .7;
- transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
 }
 
 button:hover {
- color: var(--btn-color);
- background-color: var(--glow-color);
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 }
 
 button:active {
- box-shadow: 0 0 0.6em .25em var(--glow-color),
-        0 0 2.5em 2em var(--glow-spread-color),
-        inset 0 0 .5em .25em var(--glow-color);
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
 }
 
-/* From Uiverse.io by dexter-st */ 
+/* From Uiverse.io by dexter-st */
 .loader-wrapper {
   position: relative;
   display: flex;
@@ -61,15 +61,14 @@ button:active {
   height: 200px;
   width: auto;
   margin: 2rem;
-  
 
   font-family: "Poppins", sans-serif;
   font-size: 1.6em;
   font-weight: 600;
   user-select: none;
   color: #fff;
-
-  scale: 2;
+  transform: scale(2);
+  transform-origin: center;
 }
 
 .loader {
@@ -109,8 +108,7 @@ button:active {
     transparent 10%,
     black 25%
   );
-  animation:
-    transform-animation 2s infinite alternate,
+  animation: transform-animation 2s infinite alternate,
     opacity-animation 4s infinite;
   animation-timing-function: cubic-bezier(0.6, 0.8, 0.5, 1);
 }
@@ -189,5 +187,41 @@ button:active {
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Prevent horizontal overflow and make loader responsive on small screens */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .loader-wrapper {
+    /* undo the large scale on small screens */
+    transform: scale(1) !important;
+    margin: 1rem;
+    font-size: 1.1em;
+    height: 4em;
+  }
+
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1,
+  p,
+  button,
+  a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  button {
+    padding: 0.6em 1.2em;
   }
 }

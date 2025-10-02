@@ -17,15 +17,11 @@ export default function Home() {
           <div className="loader"></div>
         </div>
       </h1>
-      <p className="text-lg text-white mb-6">
+      <p className="text-lg text-white mb-6 text-center">
         Click this button to see what I'm working on rn!
       </p>
-      <button className="" >
-        <a
-          href="https://vocaview.com"
-        >
-          Click Me!
-        </a>
+      <button className="">
+        <a href="https://vocaview.com">Click Me!</a>
       </button>
     </main>
   );
